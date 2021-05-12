@@ -1,7 +1,8 @@
 import React, { useState } from 'react'
 import { ScrollView, StyleSheet, Text, View  } from 'react-native'
 import { Field, reduxForm } from 'redux-form';
-import { required , email , password , phoneno } from '../validations'
+import { passwordRequired , emailRequired , mobileRequired, nameRequired ,
+    validateEmail , validatePassword , validatePhoneno } from '../validations'
 import CustomButton from '../components/CustomButton';
 import MyInput from '../components/MyInput';
 import SuccessfullModal from '../modals/SuccessfullModal'
@@ -36,14 +37,14 @@ const MyFormSceen = (props) => {
                     label="Full Name"
                     placeholder="Enter your full name"
                     component={MyInput}
-                    validate={[required]}
+                    validate={[nameRequired]}
                 />
                 <Field 
                     name="email"
                     label="Email Id"
                     placeholder="Enter your email id"
                     component={MyInput}
-                    validate={[required,email]}
+                    validate={[emailRequired,validateEmail]}
                 />
                 <Field 
                     name="mobileNo"
@@ -51,7 +52,7 @@ const MyFormSceen = (props) => {
                     label="Mobile Number"
                     placeholder="Enter your mobile number"
                     component={MyInput}
-                    validate={[required,phoneno]}
+                    validate={[mobileRequired,validatePhoneno]}
                 />
                 <Field 
                     name="password"
@@ -59,7 +60,7 @@ const MyFormSceen = (props) => {
                     label="Password"
                     placeholder="Enter password"
                     component={MyInput}
-                    validate={[required,password]}
+                    validate={[passwordRequired,validatePassword]}
                 />
 
                 <View style={styles.buttonContainer}>
