@@ -1,8 +1,10 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import { formValueSelector  } from 'redux-form'
+import { formValueSelector } from 'redux-form'
 import { Modal, StyleSheet, Text, TouchableOpacity, View } from 'react-native'
-import CustomButton from '../components/CustomButton'
+import { CustomButton } from '../../Components'
+import { Colors, Fonts, Styles } from '../../Theme'
+import { scale } from 'react-native-size-matters'
 
 let SucccessfullModal = (props) => {
 
@@ -12,7 +14,7 @@ let SucccessfullModal = (props) => {
         // to render all the keys and values of json object 
         let rows = []
         Object.keys(submittedData).forEach( key => rows.push(
-            <Text key={key} style={styles.row} >{key + ' : ' + submittedData[key]}</Text>
+            <Text key={key} style={[styles.row,Fonts.textSmall]} >{key + ' : ' + submittedData[key]}</Text>
         ))
         return  rows
     }
@@ -28,11 +30,13 @@ let SucccessfullModal = (props) => {
                 {/* nested touchableopacity is for not to close the modal when modalbox is touched  */}
                 <TouchableOpacity activeOpacity={1} style={styles.modalBox}>
    
-                    <Text style={styles.modalTitle}> Your Submitted Data </Text>    
+                    <Text style={[styles.modalTitle,Fonts.titleSmall,Fonts.textCenter]}> 
+                        Your Submitted Data 
+                    </Text>    
 
                     {data ? renderSubmittedData(data) : null}
 
-                    <View style={styles.buttonContainer}>
+                    <View style={Styles.buttonContainer}>
                         <CustomButton 
                             buttonLabel='Okay'
                             onPress={props.closeModal}
@@ -61,24 +65,17 @@ const styles = StyleSheet.create({
     modalScreen : {
         flex : 1 , 
         justifyContent : 'center' , 
-        backgroundColor : '#000000aa'
+        backgroundColor : Colors.trasparentBg
     },
     modalBox : { 
-        marginHorizontal : 30,
-        backgroundColor : 'white', 
+        marginHorizontal : scale(30),
+        backgroundColor : Colors.white, 
         overflow : 'hidden'
     },
     modalTitle : {
-        marginVertical : 5,
-        textAlign : 'center',
-        fontSize : 18,
-        fontWeight : '700'
+        marginVertical : scale(5),
     },
     row : {
-        margin : 10
-    },
-    buttonContainer  :{
-        marginHorizontal : 40,
-        marginVertical : 15
+        margin : scale(10)
     }
 })

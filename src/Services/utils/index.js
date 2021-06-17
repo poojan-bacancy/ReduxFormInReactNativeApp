@@ -27,3 +27,7 @@ export const validatePhoneno = value =>
     value && !value.match(phonenoRegex)
     ? 'Invalid Mobile no.'
     : undefined
+
+export const removeSpaces = (term) => term.replace(/\s/g, '')
+
+export const allowOnlyChar = (term) => term.replace(/[^a-zA-Z ]/g, "")

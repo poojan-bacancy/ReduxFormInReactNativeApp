@@ -1,5 +1,7 @@
 import React from 'react'
 import { StyleSheet, Text, TouchableOpacity } from 'react-native'
+import { scale } from 'react-native-size-matters'
+import { Colors, Fonts } from '../Theme'
 
 const CustomButton = ({onPress,buttonLabel}) => {
     return (
@@ -8,7 +10,7 @@ const CustomButton = ({onPress,buttonLabel}) => {
             style={styles.button} 
             onPress={onPress}
         >
-            <Text style={styles.buttonLabel}> {buttonLabel} </Text>
+            <Text style={[Fonts.whiteText,Fonts.textRegular]}> {buttonLabel} </Text>
 
         </TouchableOpacity>
     )
@@ -21,11 +23,8 @@ const styles = StyleSheet.create({
         flexDirection : 'row',
         justifyContent : 'center',
         alignItems : 'center',
-        backgroundColor : 'green',
-        paddingVertical : 10,
+        backgroundColor : Colors.green,
+        paddingVertical : scale(10),
         borderRadius  : 25,
-    },
-    buttonLabel : {
-        color : 'white'
     }
 })
