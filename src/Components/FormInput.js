@@ -1,9 +1,9 @@
 import React from 'react'
 import { Text, View , TextInput } from 'react-native'
-import { allowOnlyChar, removeSpaces } from '../Services/utils'
+import { allowOnlyChar, removeSpaces } from '../Services/utils/validations'
 import { Colors, Fonts, Styles } from '../Theme'
 
-const MyInput = (props) => {
+const FormInput = (props) => {
 
     const { touched , error }  = props.meta
 
@@ -17,7 +17,7 @@ const MyInput = (props) => {
     const textChangeHandler = (term) => {
         // password email and mobile number should not contain white spaces
         // name field should not contain any specialcharacter or number 
-        const value = props.label !== "Full Name" ? removeSpaces(term) : allowOnlyChar(term)
+        const value = props.allowOnlyChar ? allowOnlyChar(term) : removeSpaces(term)
         props.input.onChange(value)
     }
  
@@ -28,16 +28,10 @@ const MyInput = (props) => {
             
             <View style={Styles.textInputContainer}>
                 <TextInput
+                    {...props}
                     ref={props.refField}
                     style={[Styles.flexOne,Fonts.textSmall]} 
-                    returnKeyType={props.label !==  "Password" ? "next" : "done"}
-                    maxLength={props.maxLength}
-                    keyboardType={props.label === "Mobile Number" ? 'numeric' : 'default'}
-                    secureTextEntry={props.secureTextEntry}
-                    placeholder={props.placeholder}
                     placeholderTextColor={Colors.grey}
-                    onSubmitEditing={props.onEnter}
-                    blurOnSubmit={props.label !==  "Password" ? false : true}
                     // below props are needed for the textInput to be handled properly by redux form
                     value={props.input.value}
                     onChangeText={textChangeHandler}
@@ -52,6 +46,6 @@ const MyInput = (props) => {
     )
 }
 
-export default MyInput
+export default FormInput
 
 

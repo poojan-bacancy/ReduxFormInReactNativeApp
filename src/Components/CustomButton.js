@@ -25,6 +25,9 @@ const styles = StyleSheet.create({
         alignItems : 'center',
         backgroundColor : Colors.green,
         paddingVertical : scale(10),
-        borderRadius  : 25,
+        width : scale(200),
+        maxWidth : 300,
+        maxHeight : 70,
+        borderRadius  : scale(25),
     }
 })

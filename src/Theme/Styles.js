@@ -1,13 +1,15 @@
 import { StyleSheet } from 'react-native'
-import { scale } from 'react-native-size-matters';
+import { scale , moderateScale } from 'react-native-size-matters';
 import Colors  from './Colors';
 
 export default StyleSheet.create({
+    header : {
+        fontSize : moderateScale(22),
+        textAlign : 'center',
+        marginVertical : scale(10)
+    },
     flexOne : {
         flex : 1
-    },
-    formTitle : {
-        marginVertical : scale(10)
     },
     formContainer : {
         marginHorizontal  : scale(15)
